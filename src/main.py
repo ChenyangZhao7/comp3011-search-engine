@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from crawler import crawl
 from indexer import build_index, save_index, load_index
-from search import print_word, find_pages
+from search import print_word, find_pages, find_phrase
 
 
 class SearchShell(cmd.Cmd):
@@ -56,6 +56,16 @@ class SearchShell(cmd.Cmd):
             print("No index loaded. Run 'build' or 'load' first.")
             return
         find_pages(self.index, query.strip())
+
+    def do_phrase(self, query):
+        """Find pages where the query words appear consecutively.\nUsage: phrase <word> [word2] ..."""
+        if not query.strip():
+            print("Usage: phrase <word> [word2] ...")
+            return
+        if self.index is None:
+            print("No index loaded. Run 'build' or 'load' first.")
+            return
+        find_phrase(self.index, query.strip())
 
     def do_quit(self, _):
         """Exit the search tool.\nUsage: quit"""

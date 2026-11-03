@@ -37,6 +37,7 @@ Start the interactive shell:
 | `load` | Load a previously built index from disk | `> load` |
 | `print <word>` | Print the inverted index entry for a word | `> print life` |
 | `find <query>` | Find all pages containing the query words | `> find good friends` |
+| `phrase <query>` | Find pages where the query words appear consecutively, in order | `> phrase good friends` |
 | `help` | List all available commands | `> help` |
 | `quit` | Exit the tool | `> quit` |
 
@@ -57,3 +58,4 @@ Start the interactive shell:
 - **6-second politeness window** — respects the target server
 - **cmd.Cmd shell** — provides built-in help, command dispatching, and clean structure
 - **Case-insensitive indexing** — all tokens lowercased at index build time
+- **Phrase search uses stored positions** — words must occupy consecutive positions, in order
